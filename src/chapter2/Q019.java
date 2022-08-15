@@ -34,24 +34,32 @@ public class Q019 {
     }
 
     private static int partition(int[] array, int s, int e) {
+        if (s + 1 == e) {
+            if (array[s] > array[e]) {
+                swap(array, s, e);
+                return e;
+            }
+        }
         int m = (s + e) / 2;
         swap(array, s, m);
         int pivot = array[s];
-        int i = s;
+        int i = s + 1;
         int j = e;
         while (i < j) {
-            while (pivot < array[j]) {
+            while (pivot < array[j] && j > 0) {
                 j--;
             }
-            while (i < j && pivot >= array[i]) {
+            while (pivot > array[i] && i < array.length - 1) {
                 i++;
             }
-            swap(array, i, j);
+            if (i <= j) {
+                swap(array, i++, j--);
+            }
         }
 
         array[s] = array[j];
-        array[i] = pivot;
-        return i;
+        array[j] = pivot;
+        return j;
     }
 
     private static void swap(int[] array, int i, int j) {
