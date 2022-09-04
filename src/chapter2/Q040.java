@@ -8,29 +8,22 @@ public class Q040 {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
 
-        long min = sc.nextLong();
-        long max = sc.nextLong();
+        long n = sc.nextLong();
 
-        boolean[] check = new boolean[(int) (max - min + 1)];
-
-        for (long i = 2; i <= (int) Math.sqrt(max); i++) {
-            long pow = i * i;
-            long start = min / pow;
-            if (min % pow != 0) {
-                start++;
-            }
-            for (long j = start; pow * j <= max; j++) {
-                check[(int) ((j * pow) - min)] = true;
+        long result = n;
+        for (long i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                result = result - result / i;
+                while (n % i == 0) {
+                    n /= i;
+                }
             }
         }
 
-        int cnt = 0;
-        for (int i = 0; i < check.length; i++) {
-            if (!check[i]) {
-                cnt++;
-            }
+        if (n > 1) {
+            result = result - result / n;
         }
 
-        System.out.println(cnt);
+        System.out.println(result);
     }
 }
