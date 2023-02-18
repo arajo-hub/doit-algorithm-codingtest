@@ -15,7 +15,7 @@ public class Q085 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken()); // 학생의 수
+        int n = Integer.parseInt(st.nextToken());
 
         d = new int[n + 2];
         t = new int[n + 1];
